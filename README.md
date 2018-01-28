@@ -7,7 +7,7 @@ From the summary of the literature in [Tang, Kay, He 2016](https://arxiv.org/pdf
 
 ## Mutual Information
 
-![img](https://latex.codecogs.com/gif.latex?MI(t_k, c_i) = log \left ( \frac{\mathbb{P}(t_k, c_i)}{\mathbb{P}(t_k)\mathbb{P}(c_i)} \right )) 
+![img](https://latex.codecogs.com/gif.latex?MI(t_k,c_i)=log\left(\frac{\mathbb{P}(t_k,c_i)}{\mathbb{P}(t_k)\mathbb{P}(c_i)}\right)) 
 
 ## Cross entropy for text
 
