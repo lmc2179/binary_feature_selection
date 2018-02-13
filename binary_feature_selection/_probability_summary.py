@@ -5,7 +5,7 @@ class BinaryClassProbabilitySummary(object):
         # TODO: Reshape?
         self.prob_t = np.mean(T, axis=0)
         self.prob_c = np.mean(C, axis=0)
-        self.prob_t_c = np.mean(T[C[:,0]==1], axis=0) * self.prob_c
+        self.prob_t_c = np.mean(T[C==1], axis=0) * self.prob_c
 
     def get_prob_feature(self, i):
         return self.prob_t[i]

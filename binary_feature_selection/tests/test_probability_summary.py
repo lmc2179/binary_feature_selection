@@ -15,8 +15,7 @@ class ProbabilitySummaryTest(unittest.TestCase):
     def test_prob_summary(self):
         T = np.array([[1, 0],
                      [1, 1]])
-        C = np.array([[1],
-                      [0]])
+        C = np.array([1, 0])
         self._assert_correct_two_features(T,
                                           C,
                                           zero_marginal=1,
@@ -29,7 +28,7 @@ class ProbabilitySummaryTest(unittest.TestCase):
         gen_random_balanced = lambda n: np.array(sorted([0]*(int(n/2)) + [1]*(int(n/2)), key=lambda k: random()))
         x = gen_random_balanced(5000)
         T = np.vstack((x, 1-x)).T
-        C = x.reshape(-1, 1)
+        C = x
         self._assert_correct_two_features(T,
                                           C,
                                           zero_marginal=0.5,
