@@ -15,14 +15,26 @@ class AbstractFeatureSelectorTest(unittest.TestCase):
         self.assertEqual(list(useful), list(X_transformed[:,0]))
         self.assertEqual(X_transformed.shape, (n, 1))
 
-class TestMutualInformation(AbstractFeatureSelectorTest):
+class TestMutualInformationSelector(AbstractFeatureSelectorTest):
     def test_two_features(self):
         self._assert_two_features('mutual_information')
 
-class TestCET(AbstractFeatureSelectorTest):
+class TestCETSelector(AbstractFeatureSelectorTest):
     def test_two_features(self):
         self._assert_two_features('cross_entropy_for_text')
 
-class TestInformationGain(AbstractFeatureSelectorTest):
+class TestInformationGainSelector(AbstractFeatureSelectorTest):
     def test_two_features(self):
         self._assert_two_features('information_gain')
+
+class TestMutualInformationInteraction(unittest.TestCase):
+    def test(self):
+        n = 100
+        x1 = np.random.randint(0, 2, n)
+        x2 = np.random.randint(0, 2, n)
+        useless = np.random.randint(0, 2, n)
+        y = np.array(x1 * x2)
+        X = np.array([x1, x2, useless]).T
+        fs = feature_selection.PairwiseInteractionSelector(method='mutual_information', max_features=1)
+        X_new = fs.fit_transform(X, y)
+        self.assertEqual(list(X_new[:,-1]), list(y))
