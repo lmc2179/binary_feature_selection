@@ -40,8 +40,8 @@ class BinaryClassFeatureSelector(AbstractMetricFeatureSelector):
         self.most_important_features = [index for _, index in sorted(scores_and_features, reverse=True)][:self.max_features]
 
 
-def transform(self, X, y):
-    return X[:, self.most_important_features]
+    def transform(self, X, y):
+        return X[:, self.most_important_features]
 
 class PairwiseInteractionSelector(AbstractMetricFeatureSelector):
     def fit(self, X, y): #TODO: Break up
