@@ -12,7 +12,7 @@ class AbstractMetricFeatureSelector(object):
         metric_name_mapping = {'mutual_information': metrics.MutualInformation,
                                'cross_entropy_for_text': metrics.CrossEntropyText,
                                'information_gain': metrics.InformationGain,
-                               'chi_squared': metrics.ChiSquared,
+                               'chi2': metrics.ChiSquared,
                                'gss': metrics.GSS}
         if method in metric_name_mapping:
             return metric_name_mapping[method]()
@@ -39,7 +39,6 @@ class BinaryClassFeatureSelector(AbstractMetricFeatureSelector):
             scores_and_features.append((score, i))
         self.most_important_features = [index for _, index in sorted(scores_and_features, reverse=True)][:self.max_features]
 
-
     def transform(self, X, y):
         return X[:, self.most_important_features]
 
@@ -48,7 +47,7 @@ class PairwiseInteractionSelector(AbstractMetricFeatureSelector):
         _, c = X.shape
         scored_interactions = []
         for i1 in range(c):
-            for i2 in range(i1, c):
+            for i2 in range(i1+1, c):
                 t = X[:,i1] * X[:,i2]
                 self.metric.fit(t.reshape(-1, 1), y)
                 score = self.metric.score_feature(0)

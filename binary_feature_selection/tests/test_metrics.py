@@ -24,3 +24,11 @@ class TestCrossEntropyText(AbstractMetricTest):
 class TestInformationGain(AbstractMetricTest):
     def test_two_features(self):
         self._assert_correct_two_features(metrics.InformationGain())
+
+class TestChiSquare(AbstractMetricTest):
+    def test_two_features(self):
+        self._assert_correct_two_features(metrics.ChiSquared())
+
+class TestGSS(AbstractMetricTest):
+    def test_two_features(self):
+        self._assert_correct_two_features(metrics.GSS())

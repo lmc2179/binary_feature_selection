@@ -27,6 +27,14 @@ class TestInformationGainSelector(AbstractFeatureSelectorTest):
     def test_two_features(self):
         self._assert_two_features('information_gain')
 
+class TestChiSquareSelector(AbstractFeatureSelectorTest):
+    def test_two_features(self):
+        self._assert_two_features('chi2')
+
+class TestGSSSelector(AbstractFeatureSelectorTest):
+    def test_two_features(self):
+        self._assert_two_features('gss')
+
 class AbstractInteractionTest(unittest.TestCase):
     def _assert_finds_interaction(self, method):
         n = 100
@@ -50,3 +58,11 @@ class TestCETInteraction(AbstractInteractionTest):
 class TestInformationGainInteraction(AbstractInteractionTest):
     def test_find_interaction(self):
         self._assert_finds_interaction('information_gain')
+
+class TestChiSquareInteraction(AbstractInteractionTest):
+    def test_find_interaction(self):
+        self._assert_finds_interaction('chi2')
+
+class TestGSSInteraction(AbstractInteractionTest):
+    def test_find_interaction(self):
+        self._assert_finds_interaction('gss')
